@@ -38,7 +38,7 @@
                 </div>
                 <div class="value-card">
                     <h3>Spisskompetanse</h3>
-                    <p>Vi blir aldri utlært, vi skal alltid vite hva vi driver med</p>
+                    <p>Når du tror du er ferdig utlært, så er du ikke utlært, men ferdig!</p>
                 </div>
                 <div class="value-card">
                     <h3>Disruptiv</h3>
@@ -199,9 +199,215 @@
                 </div>
             </div>
         </div>
+</section>
+
+    <!-- Industry Use Cases Section -->
+    <section class="industries-section" id="industrier">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--accent-yellow);">Bransjespesifikke løsninger</h2>
+
+            <div class="industry-selector-wrapper">
+                <label for="industry-select">Velg bransje:</label>
+                <select id="industry-select" aria-label="Velg bransje">
+                    <option value="healthcare">Helse</option>
+                    <option value="finance">Finans</option>
+                    <option value="public">Offentlig sektor</option>
+                    <option value="legal">Jus og advokater</option>
+                    <option value="research">Forskning og utdanning</option>
+                </select>
+            </div>
+
+            <div class="industry-panel" id="industry-panel" aria-live="polite">
+                <div class="panel-content">
+                    <h3 class="panel-title" id="panel-title">Helse</h3>
+                    <ul class="panel-list" id="panel-list">
+                        <li>GDPR- og Helsedataloven-compliant prosessering av pasientdata</li>
+                        <li>Sikker tilgang til språkmodeller for medisinsk dokumentasjon</li>
+                        <li>E2E-kryptering som oppfyller NSM sine krav til helsedata</li>
+                        <li>Prosjektbasert tilgangskontroll for medisinske forskningsprosjekter</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
+    <!-- Info Modal -->
+    <div class="modal" id="info-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content-wrapper">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Tittel</h3>
+                <button class="modal-close" id="modal-close" aria-label="Lukk modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-text" id="modal-content"></p>
+            </div>
+        </div>
+    </div>
 
+    <script>
+            (function() {
+                const industryData = {
+                    healthcare: {
+                        title: 'Helse',
+                        items: [
+                            'GDPR- og Helsedataloven-compliant prosessering av pasientdata',
+                            'Sikker tilgang til språkmodeller for medisinsk dokumentasjon',
+                            'E2E-kryptering som oppfyller NSM sine krav til helsedata',
+                            'Prosjektbasert tilgangskontroll for medisinske forskningsprosjekter'
+                        ],
+                        details: [
+                            'Vår plattform sikrer alle pasientdata gjennom ende-til-ende kryptering og full intern datasuverenitet. Alle prosesser er automatisert for å oppfylle GDPR Artikkel 9 og Helsedataloven § 7-4, inkludert dataminimering og formålsbegrensning.',
+                            'Tilbyr helsepersonell tilgang til avanserte språkmodeller for klinisk dokumentasjon, pasientjournal-notater og behandlingsplaner. AI-modellene kjører i NSM-sertifiserte senterlokasjoner for maksimal datasikkerhet.',
+                            'Zert implementerer E2E-kryptering hele veien fra innsending til prosessering, med separat kryptering i lagring og under overføring. Oppfyller NSM sine grunnprinsipper for informasjonssikkerhet i helsesektoren.',
+                            'Organiser sensitiv forskningsdata i isolerte prosjektdomener med granulær tilgangskontroll. Forskningsprosjekter kan dele data trygt innenfor senteret mens samtykke og dataflyt spores automatisk.'
+                        ]
+                    },
+                    finance: {
+                        title: 'Finans',
+                        items: [
+                            'Banklov-compliant håndtering av finansiell data',
+                            'Automatisk compliance-rapportering for Finanstilsynet',
+                            'Homomorfisk kryptering for sikre transaksjonsanalyser',
+                            'GDPR-compliant prosessering av kundedata med fulle sporbarhet'
+                        ],
+                        details: [
+                            'Alle finansielle data behandles i tråd med Finansforetaksloven og Nasjonalbankens retningslinjer. Rentabilitet-, transaksjons- og kredittdata er automatisk isolert i særskilt regulerte prosesser.',
+                            'Genererer automatisk audit trails, risikorapportering og transaksjonshistorikk formatert for Finanstilsynets rapporteringskrav. Sporing skjer sanntid med stempling av tid og aktør.',
+                            'Utnytter homomorfisk kryptering for å analysere transaksjonsmønstre, oppdage svindel og utføre risikovurderinger på kryptert data - uten å dekryptere hverken kunde- eller transaksjonsdata.',
+                            'Alle kundedata behandles med fulle rettigheter, samtykkemuligheter og slette-rettigheter i henhold til GDPR. Hvert trinn i prosesseringen logges fullstendig for audit og kundeinnsyn.'
+                        ]
+                    },
+                    public: {
+                        title: 'Offentlig sektor',
+                        items: [
+                            'Sikkerhetsloven- og Sch-it-compliant plattform',
+                            'NSM-sertifiserte senterlokasjoner for kritisk infrastruktur',
+                            'Automatisk GDPR-kompatibilitet i alle prosesser',
+                            'Full nasjonal datasuverenitet uten utlevering til utenlandske aktører'
+                        ],
+                        details: [
+                            'Plattformen er bygget og konfigurert for å oppfylle Sikkerhetsloven § 5 og Sch-it-rammeverket, med automatisk klassifisering, sikkerhetsvurdering og gradert tilgangskontroll for all offentlig data.',
+                            'All prosessering skjer i NSM-sertifiserte senterlokasjoner med høyeste sikkerhetsnivå (S5) for kritisk infrastruktur. Nettsenter er bygget etter third-party control-prinsippet.',
+                            'Automatisk overvåking av personbehandling, samtykkehåndtering, dataminimering og sletting sikrer at alle offentlige prosesser er konstant GDPR-kompatible uten manuelt arbeid.',
+                            'Fullstendig norsk eierskap og drift - ingen data lagres eller prosesseres utenfor Norge. Ingen avhengighet av utenlandske skyleverandører, noe som garanterer full nasjonal datasuverenitet.'
+                        ]
+                    },
+                    legal: {
+                        title: 'Jus og advokater',
+                        items: [
+                            'Advokatforeningens regler for taushetsplikt ivaretatt',
+                            'Sikker prosessering av klientdokumentasjon med full audit trail',
+                            'E2E-kryptering som oppfyller strenge advokatkrav',
+                            'Prosjektbaserte domener isolerer sensitive saker fra hverandre'
+                        ],
+                        details: [
+                            'All datahåndtering er konfigurert for å oppfylle Advokatforeningens regler om taushetsplikt, inkludert utstrakt anonymisering, begrensede tilganger og slettekrav etter opphørt oppdragsforhold.',
+                            'Klientdokumentasjon, e-postkorrespondanse og saksdata lagres med full audit trail som sporer hvem som har aksessert, endret eller eksportert hver eneste fil og dokument.',
+                            'Advokater får E2E-kryptert lagring og prosessering med separate krypteringsnøkler som bare klienten og advokaten tilgang til. Oppfyller strenge krav i advokatetiske regler og EU-domstolspraksis.',
+                            'Hver klient eller sak isoleres i egne domener med granulære rettigheter. Klientdata kan ikke krysse domener, og systemet hindrer utilsiktet datalekkasje mellom saker.'
+                        ]
+                    },
+                    research: {
+                        title: 'Forskning og utdanning',
+                        items: [
+                            'NSD-kompatibel prosessering av forskningsdata',
+                            'Tillit for sensitive akademiske studier med persondata',
+                            'Automatisk compliance-rapportering for etiske komiteer',
+                            'Sikker samarbeidsplattform for跨-universitet forskningsprosjekter'
+                        ],
+                        details: [
+                            'Vår plattform har funksjoner vurdert og godkjent av NSD for prosessering av personrelatert forskningsdata, inkludert pseudonymisering, samtykkemuligheter og integrasjon med REK-saker.',
+                            'Forskere kan prosessere sensitive datasett (helsedata, utdanningsdata, sosialdata) med AI og maskinlæring mens persondata forblir kryptert og isolert - oppfyller strenge etiske krav.',
+                            'Automatisk export av compliance-rapporter i formatert for REK/NSD-krav, inkludert dataflyt, lagringsperioder, annonymiseringsstatus og sjekkliste for personvern og forskningsetikk.',
+                            'Sikker felles arbeidsplass for forskere på tvers av institusjoner, med delte prosjektdomener, versjonskontrolled datasett og anonymiserte datadelingsmuligheter for inter-fakultet samarbeid.'
+                        ]
+                    }
+                };
+
+                const select = document.getElementById('industry-select');
+                const panel = document.getElementById('industry-panel');
+                const panelTitle = document.getElementById('panel-title');
+                const panelList = document.getElementById('panel-list');
+                const modal = document.getElementById('info-modal');
+                const modalTitle = document.getElementById('modal-title');
+                const modalContent = document.getElementById('modal-content');
+                const modalClose = document.getElementById('modal-close');
+                let isAnimating = false;
+
+                function updatePanel(industry, animate = true) {
+                    if (isAnimating) return;
+                    if (animate) isAnimating = true;
+
+                    const data = industryData[industry];
+
+                    if (animate) panel.style.opacity = '0';
+
+                    setTimeout(function() {
+                        panelTitle.textContent = data.title;
+                        panelList.innerHTML = data.items.map((item, index) => `
+                            <li>
+                                <div class="panel-item-content">
+                                    <span class="panel-item-text">${item}</span>
+                                    <button class="read-more-btn" data-industry="${industry}" data-index="${index}" aria-label="Les mer om dette emnet">
+                                        Les mer
+                                    </button>
+                                </div>
+                            </li>
+                        `).join('');
+                        if (animate) panel.style.opacity = '1';
+                        isAnimating = false;
+                        attachReadMoreListeners();
+                    }, animate ? 300 : 0);
+                }
+
+                function openModal(industry, index) {
+                    const data = industryData[industry];
+                    modalTitle.textContent = data.items[index];
+                    modalContent.textContent = data.details[index];
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeModal() {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+
+                function attachReadMoreListeners() {
+                    document.querySelectorAll('.read-more-btn').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const industry = this.dataset.industry;
+                            const index = parseInt(this.dataset.index);
+                            openModal(industry, index);
+                        });
+                    });
+                }
+
+                select.addEventListener('change', function() {
+                    updatePanel(this.value);
+                });
+
+                modalClose.addEventListener('click', closeModal);
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && modal.classList.contains('active')) {
+                        closeModal();
+                    }
+                });
+
+                updatePanel('healthcare', false);
+            })();
+        </script>
 
     <!-- Partners Section -->
     <section class="partners-section">
