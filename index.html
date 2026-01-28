@@ -159,24 +159,33 @@
                 </div>
                 
                 <!-- Content Area -->
-                <div id="user-content" class="use-case-content">
-                    <div class="use-case-text">
-                        <p><strong>AI for organisasjoner:</strong> Automatiser analyser eller beslutningsstøtte uten å eksponere sensitive data.</p>
-                        <ul>
-                            <li>Lokal lagring av data</li>
-                            <li>Full tilgangskontroll</li>
-                            <li>NSM/GDPR-compliant</li>
-                        </ul>
+                <div class="content-wrapper">
+                    <div id="user-content" class="use-case-content active">
+                        <div class="use-case-text">
+                            <p><strong>AI for organisasjoner:</strong> Automatiser analyser eller beslutningsstøtte uten å eksponere sensitive data.</p>
+                            <ul>
+                                <li>Lokal lagring av data</li>
+                                <li>Full tilgangskontroll</li>
+                                <li>NSM/GDPR-compliant</li>
+                            </ul>
 
+                        </div>
+                        <div class="use-case-visual">
+                            <img src="static/user-image.png" alt="User scenario illustration" loading="lazy">
+                        </div>
                     </div>
-                    <div class="use-case-visual">
-                        <img src="static/user-image.png" alt="User scenario illustration" loading="lazy">
-                    </div>
-                </div>
-                
-                <div id="dev-content" class="use-case-content" style="display: none;">
-                    <div class="use-case-visual terminal-mockup">
-                        <pre><code><span class="terminal-line">$ pip install <span class="zert-highlight">zert</span></span>
+                    
+                    <div id="dev-content" class="use-case-content">
+                        <div class="use-case-text">
+                            <p><strong>API for utviklere:</strong> Integrasjon med Zert SDK gir utviklere tilgang til rå prosseseringskraft.</p>
+                            <ul>
+                                <li>Automatisk compliance rapportering</li>
+                                <li>Tilrettelagt API både for enkle og komplekse jobber</li>
+                                <li>E2E-kryptering og støtte for homomorfisk kryptering</li>
+                            </ul>
+                        </div>
+                        <div class="use-case-visual terminal-mockup">
+                            <pre><code><span class="terminal-line">$ pip install <span class="zert-highlight">zert</span></span>
 <span class="terminal-line terminal-output">Collecting zert</span>
 <span class="terminal-line terminal-output">  Downloading zert-3.2.1-py3-none-any.whl (52 kB)</span>
 <span class="terminal-line terminal-output">Installing collected packages: zert</span>
@@ -185,6 +194,7 @@
 <span class="terminal-line">$ <span class="zert-highlight">zert</span> configure --api-key <span class="placeholder">YOUR_API_KEY</span></span>
 <span class="terminal-line terminal-output">» Validating API key...</span>
 <span class="terminal-line terminal-output">✓ Configuration saved to ~/.zert/config.yml</span></code></pre>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -314,8 +324,8 @@
                     btnDev.classList.remove('active');
                     btnDev.setAttribute('aria-selected', 'false');
                     btnDev.setAttribute('tabindex', '-1');
-                    userContent.style.display = 'flex';
-                    devContent.style.display = 'none';
+                    userContent.classList.add('active');
+                    devContent.classList.remove('active');
                     resetAnimations();
                 }
 
@@ -326,8 +336,8 @@
                     btnUser.classList.remove('active');
                     btnUser.setAttribute('aria-selected', 'false');
                     btnUser.setAttribute('tabindex', '-1');
-                    userContent.style.display = 'none';
-                    devContent.style.display = 'flex';
+                    devContent.classList.add('active');
+                    userContent.classList.remove('active');
                     setTimeout(animateTerminal, 100);
                 }
 
